@@ -5,13 +5,13 @@ use \Kodlazim\Core\Route;
 Route::get('/', function () {
 
     $polat = new \Kodlazim\App\Models\User();
-     $polat->setFullName('oğuzhan karahan');
-     $polat->setEmail('polat@polatq.com');
-     $polat->setPassword(md5('asdsada'));
-     $polat->save();
+    $polat->setFullName('oğuzhan karahan');
+    $polat->setEmail('polat@polatq.com');
+    $polat->setPassword(md5('asdsada'));
+    $polat->save();
 
-     $polat->setEmail('polatpolat@polatqq.com');
-     $polat->save();
+    $polat->setEmail('polatpolat@polatqq.com');
+    $polat->save();
 
     return view('home', [
         'username' => 'Oguzhan Karahan'
@@ -125,10 +125,12 @@ Route::get('/api/self-info', function () {
 //})->where('search', '.*');
 //
 
-Route::prefix('/admin')->group(['namespace' => 'admin'],function () {
+Route::prefix('/admin')->group(['namespace' => 'admin'], function () {
     Route::get('/', 'AdminControllers@index')->name('index');
     Route::get('/users', 'admin@index');
     Route::get('/settings', 'AdminControllers@settings')->name('settings');
 });
-
+Route::get('/githubtest', function () {
+    //
+});
 Route::redirect('/php-dersleri', '/php');
