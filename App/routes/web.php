@@ -130,7 +130,4 @@ Route::prefix('/admin')->group(['namespace' => 'admin'], function () {
     Route::get('/users', 'admin@index');
     Route::get('/settings', 'AdminControllers@settings')->name('settings');
 });
-Route::get('/githubtest', function () {
-    //
-});
 Route::redirect('/php-dersleri', '/php');
