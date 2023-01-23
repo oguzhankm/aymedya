@@ -1,0 +1,25 @@
+{
+  "name": "oguzhan/mvc",
+  "description": "Framework for Oguzhan",
+  "type": "framework",
+  "require": {
+    "vlucas/phpdotenv": "^5.5",
+    "jenssegers/blade": "^1.4",
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kodlazim\\": "./"
+    },
+    "files": [
+      "Core/helpers.php",
+      "App/routes/web.php",
+      "App/routes/api.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "Oguzhan"
+    }
+  ]
+}
