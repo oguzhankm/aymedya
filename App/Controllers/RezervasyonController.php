@@ -85,7 +85,6 @@ class RezervasyonController {
         $rezervasyon->setTelefon($telefon);
         $rezervasyon->setEmail($email);
         $rezervasyon->setTarih($tarih);
-        $this->
         $rezervasyon->setSaat($saat);
         $rezervasyon->save();
 

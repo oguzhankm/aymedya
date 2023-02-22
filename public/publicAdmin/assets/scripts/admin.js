@@ -83,4 +83,48 @@ $(function () {
         CKEDITOR.replace('editor');
     }
 
+
+
+    /*===============================================================
+     Working Settings Form
+     ================================================================*/
+
+    $("#settingsForm").submit(function (e) {
+
+        e.preventDefault();
+        var $ = jQuery;
+
+        var postData = $(this).serializeArray(),
+            formURL = $(this).attr("action"),
+            $cfResponse = $('#settingsFormResponse'),
+            $cfsubmit = $("#cfsubmit"),
+            cfsubmitText = $cfsubmit.text();
+
+        $cfsubmit.text("Sending...");
+
+
+        $.ajax(
+            {
+                url: formURL,
+                type: "POST",
+                data: postData,
+                success: function (data) {
+                    $cfResponse.html(data);
+                    $cfsubmit.text(cfsubmitText);
+                    $('#settingsForm input[name=websitename]').val('');
+                    $('#settingsForm input[name=title]').val('');
+                    $('#settingsForm input[name=description]').val('');
+                    $('#settingsForm input[name=keywords]').val('');
+
+                },
+                error: function (data) {
+                    alert("Error occurd! Please try again");
+                }
+            });
+
+        return false;
+
+    });
+
+
 });

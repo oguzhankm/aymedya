@@ -45,7 +45,7 @@ abstract class Model
         }
     }
 
-    private function getTableName(): string
+    public function getTableName(): string
     {
         if (!is_null($this->tableName)) {
             return $this->tableName;
@@ -78,6 +78,7 @@ abstract class Model
             foreach ($this->_db->query($conditions)->fetch(PDO::FETCH_ASSOC) as $key => $value) {
                 $this->{$key} = $value;
             }
+
         } catch (\Throwable $exception) {
             return false;
         }
