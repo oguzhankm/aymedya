@@ -1,6 +1,7 @@
 <?php
 
 use \Kodlazim\Core\Route;
+use Kodlazim\App\Controllers;
 
 Route::get('/', function () {
 
@@ -126,8 +127,11 @@ Route::get('/api/self-info', function () {
 //
 
 Route::prefix('/admin')->group(['namespace' => 'admin'], function () {
-    Route::get('/', 'AdminControllers@index')->name('index');
+    Route::get('/', 'Admin\AdminControllers@index')->name('index');
     Route::get('/users', 'admin@index');
-    Route::get('/settings', 'AdminControllers@settings')->name('settings');
+    Route::get('/settings', 'Settings@settings')->name('settings');
+    Route::post('/settings', [Controllers\Admin\Settings::class, 'settingsPost']);
 });
 Route::redirect('/php-dersleri', '/php');
+
+

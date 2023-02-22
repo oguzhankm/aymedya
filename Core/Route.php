@@ -65,15 +65,27 @@ class Route
 
                     $callback = $props['callback'];
 
+//                    if (is_callable($callback)) {
+//                        echo call_user_func_array($callback, $params);
+//                    } elseif (is_string($callback)) {
+//                        [$controllerName, $methodName] = explode('@', $callback);
+//                        if (!empty(self::$namespace)) {
+//                            $controllerName = '\Kodlazim\App\Controllers\\' . ucfirst(self::$namespace) . '\\' . ltrim($controllerName, '\\');
+//                        } else {
+//                            $controllerName = '\Kodlazim\App\Controllers\\' . $controllerName;
+//                        }
+//                        $controller = new $controllerName();
+//                        echo call_user_func_array([$controller, $methodName], $params);
+//
+//                    }
+
                     if (is_callable($callback)) {
                         echo call_user_func_array($callback, $params);
                     } elseif (is_string($callback)) {
                         [$controllerName, $methodName] = explode('@', $callback);
-                        if (!empty(self::$namespace)) {
-                            $controllerName = '\Kodlazim\App\Controllers\\' . ucfirst(self::$namespace) . '\\' . ltrim($controllerName,'\\');
-                        }else{
-                            $controllerName = '\Kodlazim\App\Controllers\\' . $controllerName;
-                        }
+                        $controllerName = '\Kodlazim\App\Controllers\\' . $controllerName;
+
+
                         $controller = new $controllerName();
                         echo call_user_func_array([$controller, $methodName], $params);
 
@@ -156,18 +168,22 @@ class Route
      * @param \Closure $closure
      * @return void
      */
-    public static function group($attributes, \Closure $closure): void
+    public function group($attributes, \Closure $closure): void
     {
-        if (is_callable($attributes)) {
-            $attributes();
-        } else {
-            if (isset($attributes['namespace']) && !empty($attributes['namespace'])) {
-                self::$namespace = $attributes['namespace'];
-            }
-            $closure();
-        }
+//        if (is_callable($attributes)) {
+//            $attributes();
+//        } else {
+//            if (isset($attributes['namespace']) && !empty($attributes['namespace'])) {
+//                self::$namespace = $attributes['namespace'];
+//            }
+//            $closure();
+//        }
+//        self::$prefix = '';
+
+        $closure();
         self::$prefix = '';
     }
+
 
     public function where($key, $pattern)
     {
